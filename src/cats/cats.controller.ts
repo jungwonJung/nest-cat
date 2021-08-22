@@ -5,8 +5,10 @@ import {
   Post,
   Put,
   UseFilters,
+  UseInterceptors,
 } from '@nestjs/common';
-import { HttpExceptionFilter } from 'src/http-exception.filter';
+import { HttpExceptionFilter } from 'common/exceptions/http-exception.filter';
+import { SuccessInterceptor } from 'common/interceptors/success.interceptor';
 import { CatsService } from './cats.service';
 
 @Controller('cats')
@@ -15,6 +17,7 @@ export class CatsController {
 
   @Get()
   @UseFilters(HttpExceptionFilter)
+  @UseInterceptors(SuccessInterceptor)
   getAllCat() {
     throw new HttpException('api is broken', 401);
     return 'all cat';
