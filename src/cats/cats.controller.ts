@@ -16,25 +16,27 @@ export class CatsController {
   constructor(private readonly catsService: CatsService) {}
 
   @Get()
-  @UseFilters(HttpExceptionFilter)
-  @UseInterceptors(SuccessInterceptor)
-  getAllCat() {
-    throw new HttpException('api is broken', 401);
-    return 'all cat';
-  }
-
-  @Get(':id')
-  getOneCat() {
-    return 'one cat';
+  getCurrentCat() {
+    return 'current cat';
   }
 
   @Post()
-  createCat() {
-    return 'create cat';
+  async signUp() {
+    return;
   }
 
-  @Put(':id')
-  updateCat() {
-    return 'update cat';
+  @Post('login')
+  logIn() {
+    return;
+  }
+
+  @Post('logout')
+  logOut() {
+    return;
+  }
+
+  @Post('upload/cats')
+  uploadCatImg() {
+    return;
   }
 }

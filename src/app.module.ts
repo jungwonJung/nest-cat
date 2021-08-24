@@ -5,6 +5,7 @@ import { LoggerMiddleware } from 'common/middlewares/logger.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
+import * as mongoose from 'mongoose';
 
 @Module({
   imports: [
@@ -21,7 +22,9 @@ import { CatsModule } from './cats/cats.module';
   providers: [AppService],
 })
 export class AppModule implements NestModule {
+  private readonly isDev: boolean = process.env.MODE === 'dev' ? true : false;
   configure(consumer: MiddlewareConsumer) {
     consumer.apply(LoggerMiddleware).forRoutes('*'); // * 하면 전체  아니면 /cats 같이
+    mongoose.set('debug', this.isDev); // 프로덕션에선 false
   }
 }
