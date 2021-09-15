@@ -9,7 +9,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(private readonly catsRepository: CatsRepository) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(), // 헤더에 토큰으로부터 ExtractJwt 을 추출하겠다
-      secretOrKey: 'secretKey',
+      secretOrKey: process.env.JWT_SECRET,
       ignoreExpiration: false,
     });
   }
