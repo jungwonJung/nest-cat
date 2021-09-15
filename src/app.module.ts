@@ -5,6 +5,7 @@ import { LoggerMiddleware } from 'common/middlewares/logger.middleware';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
+import { AuthModule } from './auth/auth.module';
 import * as mongoose from 'mongoose';
 
 @Module({
@@ -17,6 +18,7 @@ import * as mongoose from 'mongoose';
       useCreateIndex: true, // 인덱싱을 하겠다
       useFindAndModify: false,
     }),
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
