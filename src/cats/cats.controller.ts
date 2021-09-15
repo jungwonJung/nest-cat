@@ -11,6 +11,7 @@ import {
 import { ApiOperation, ApiResponse } from '@nestjs/swagger';
 import { HttpExceptionFilter } from 'common/exceptions/http-exception.filter';
 import { SuccessInterceptor } from 'common/interceptors/success.interceptor';
+import { AuthService } from 'src/auth/auth.service';
 import { CatsService } from './cats.service';
 import { ReadOnlyCatDto } from './dto/cat.dto';
 import { CatRequestDto } from './dto/cats.request.dto';
@@ -19,7 +20,10 @@ import { CatRequestDto } from './dto/cats.request.dto';
 @UseInterceptors(SuccessInterceptor)
 @UseFilters(HttpExceptionFilter)
 export class CatsController {
-  constructor(private readonly catsService: CatsService) {}
+  constructor(
+    private readonly catsService: CatsService,
+    private readonly authService: AuthService,
+  ) {}
 
   @Get()
   getCurrentCat() {
